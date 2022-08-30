@@ -5,21 +5,21 @@ locals {
       log_analytics = {
         enabled = true
         config = {
-          retention_in_days                           = var.log_retention_in_days
-          enable_monitoring_for_arc                   = true
-          enable_monitoring_for_vm                    = true
-          enable_monitoring_for_vmss                  = true
-          enable_solution_for_agent_health_assessment = true
-          enable_solution_for_anti_malware            = true
-          enable_solution_for_azure_activity          = true
-          enable_solution_for_change_tracking         = true
-          enable_solution_for_service_map             = true
-          enable_solution_for_sql_assessment          = true
-          enable_solution_for_updates                 = true
-          enable_solution_for_vm_insights             = true
-          enable_solution_for_sql_advanced_threat_detection = true 
-          enable_solution_for_sql_vulnerability_assessment = true
-          enable_sentinel                             = false
+          retention_in_days                                 = var.log_retention_in_days
+          enable_monitoring_for_arc                         = true
+          enable_monitoring_for_vm                          = true
+          enable_monitoring_for_vmss                        = true
+          enable_solution_for_agent_health_assessment       = true
+          enable_solution_for_anti_malware                  = true
+          enable_solution_for_azure_activity                = true
+          enable_solution_for_change_tracking               = true
+          enable_solution_for_service_map                   = true
+          enable_solution_for_sql_assessment                = true
+          enable_solution_for_updates                       = true
+          enable_solution_for_vm_insights                   = true
+          enable_solution_for_sql_advanced_threat_detection = true
+          enable_solution_for_sql_vulnerability_assessment  = true
+          enable_sentinel                                   = false
         }
       }
       security_center = {
@@ -44,6 +44,19 @@ locals {
 
     location = var.management_resources_location
     tags     = var.management_resources_tags
-    advanced = null
+    advanced = {
+      custom_settings_by_resource_type = {
+        azurerm_automation_account = {
+          management = {
+            eastus = {
+              location = "eastus2"
+            }
+            eastus2 = {
+              location = "eastus"
+            }
+          }
+        }
+      }
+    }
   }
 }
