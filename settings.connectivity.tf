@@ -120,6 +120,19 @@ locals {
 
     location = var.connectivity_resources_location
     tags     = var.connectivity_resources_tags
-    advanced = null
+    advanced = {
+      custom_settings_by_resource_type = {
+        azurerm_automation_account = {
+          management = {
+            eastus = {
+              location = "eastus2"
+            }
+            eastus2 = {
+              location = "eastus"
+            }
+          }
+        }
+      }
+    }
   }
 }
