@@ -68,6 +68,7 @@ variable "security_alerts_email_address" {
   default = "platform-infra@commure.com" 
 }
 
+/*
 variable "deploy_connectivity_resources" {
   type    = bool
   default = true
@@ -84,3 +85,4 @@ variable "connectivity_resources_tags" {
         BelongsTo = "Platform-Infra"
     }
 }
+*/

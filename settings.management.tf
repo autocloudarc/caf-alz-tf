@@ -48,12 +48,7 @@ locals {
       custom_settings_by_resource_type = {
         azurerm_automation_account = {
           management = {
-            eastus = {
-              location = "eastus2"
-            }
-            eastus2 = {
-              location = "eastus"
-            }
+            location = "eastus"
           }
         }
       }
