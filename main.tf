@@ -15,14 +15,47 @@ module "enterprise_scale" {
 
   providers = {
     azurerm              = azurerm
-    azurerm.connectivity = azurerm
-    azurerm.management   = azurerm
+    azurerm.connectivity = azurerm.connectivity
+    azurerm.management   = azurerm.management
   }
 
   root_parent_id            = data.azurerm_client_config.core.tenant_id
   root_id                   = var.root_id
   root_name                 = var.root_name
   deploy_core_landing_zones = true
+
+  /*
+  library_path   = "${path.root}/lib"
+  custom_landing_zones = {
+    "${var.root_id}-online-example-1" = {
+      display_name               = "${upper(var.root_id)} Online Example 1"
+      parent_management_group_id = "${var.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "customer_online"
+        parameters     = {}
+        access_control = {}
+      }
+    }
+    "${var.root_id}-online-example-2" = {
+      display_name               = "${upper(var.root_id)} Online Example 2"
+      parent_management_group_id = "${var.root_id}-landing-zones"
+      subscription_ids           = []
+      archetype_config = {
+        archetype_id   = "customer_online"
+        parameters     = {
+          Deny-Resource-Locations = {
+            listOfAllowedLocations = ["eastus",]
+          }
+          Deny-RSG-Locations = {
+            listOfAllowedLocations = ["eastus",]
+          }
+        }
+        access_control = {}
+      }
+    }
+  }
+*/
 
   # The following variables are used to configure the management resources.
   deploy_management_resources    = var.deploy_management_resources
@@ -37,4 +70,6 @@ module "enterprise_scale" {
   deploy_connectivity_resources    = var.deploy_connectivity_resources
   subscription_id_connectivity     = var.connectivitySubscriptionId
   configure_connectivity_resources = local.configure_connectivity_resources
+
+  deploy_demo_landing_zones = true
 }
