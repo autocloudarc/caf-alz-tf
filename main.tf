@@ -38,5 +38,5 @@ module "enterprise_scale" {
   deploy_connectivity_resources    = var.deploy_connectivity_resources
   subscription_id_connectivity     = var.connectivitySubscriptionId
   configure_connectivity_resources = local.configure_connectivity_resources
-  } 
 */
+}
