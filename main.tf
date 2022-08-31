@@ -23,9 +23,10 @@ module "enterprise_scale" {
   root_id                   = var.root_id
   root_name                 = var.root_name
   deploy_core_landing_zones = true
+  library_path   = "${path.root}/lib"
+
 
   /*
-  library_path   = "${path.root}/lib"
   custom_landing_zones = {
     "${var.root_id}-online-example-1" = {
       display_name               = "${upper(var.root_id)} Online Example 1"
