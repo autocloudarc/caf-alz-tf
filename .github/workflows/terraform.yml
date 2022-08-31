@@ -11,11 +11,11 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
 
-    # env:
-      # ARM_CLIENT_ID: ${{secrets.AZURE_CREDENTIALS.CLIENT_ID}}
-      # ARM_CLIENT_SECRET: ${{secrets.AZURE_CREDENTIALS.CLIENT_SECRET}}
-      # ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_CREDENTIALS.SUBSCRIPTION_ID}}
-      # ARM_TENANT_ID: ${{secrets.AZURE_CREDENTIALS.ARM_TENANT_ID}}
+    env:
+      CLIENT_ID : ${{secrets.AZURE_CREDENTIALS.clientId}}
+      PASSWORD: ${{secrets.AZURE_CREDENTIALS.clientSecret}}
+      SUBSCRIPTION_ID: ${{secrets.AZURE_CREDENTIALS.subscriptionId}}
+      TENANT: ${{secrets.AZURE_CREDENTIALS.tenantId}}
 
     steps:
 

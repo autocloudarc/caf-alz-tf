@@ -10,7 +10,11 @@ https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=
 "subscriptionId": "<GUID>",
 "tenantId": "<GUID>"
 }
+
+To access the backend state file hosted in an Azure storage account see the following documentation:
+https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret
 */
+
 
 # You can use the azurerm_client_config data resource to dynamically
 # extract connection settings from the provider configuration.
