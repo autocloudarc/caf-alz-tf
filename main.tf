@@ -1,6 +1,17 @@
 # We strongly recommend using the required_providers block to set the
 # Azure Provider source and version being used.
 
+/*
+If using pipelines, use the following format for GitHub secrets to allow GitHub Actions to access the secrets:
+https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows
+a = {
+  "clientId": "<guid>",
+  "displayName": "<displayName>",
+  "clientSecret": "<clientSecret>",
+  "tenantId": "<guid>"
+}
+*/
+
 # You can use the azurerm_client_config data resource to dynamically
 # extract connection settings from the provider configuration.
 
