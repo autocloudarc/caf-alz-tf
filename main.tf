@@ -5,11 +5,10 @@
 If using pipelines, use the following format for GitHub secrets to allow GitHub Actions to access the secrets:
 https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows
 {
-  "CLIENT_ID": "<>",
-  "CLIENT_SECRET": "<>",
-  "SUBSCRIPTION_ID": "<>"
-  "TENANT_ID": "<>",
-  "DISPLAY_NAME": "<>"
+"clientId": "<GUID>",
+"clientSecret": "<GUID>",
+"subscriptionId": "<GUID>",
+"tenantId": "<GUID>"
 }
 */
 
