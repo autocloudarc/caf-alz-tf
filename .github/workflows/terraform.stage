@@ -33,7 +33,7 @@ jobs:
       - name: Login to Azure for Terraform init
         run: az login --service-principal -u CLIENT_ID -p PASSWORD --tenant TENANT --verbose
 
-      - name: Terraform Init
+      - name: Terraform init
         run: terraform init
 
       - name: Terraform Format
