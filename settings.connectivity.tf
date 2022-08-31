@@ -49,7 +49,7 @@ locals {
             }
             spoke_virtual_network_resource_ids      = []
             enable_outbound_virtual_network_peering = true
-            enable_hub_network_mesh_peering = false
+            enable_hub_network_mesh_peering         = false
           }
         }
       ]

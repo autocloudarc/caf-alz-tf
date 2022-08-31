@@ -1,62 +1,39 @@
-# This workflow installs the latest version of Terraform CLI and configures the Terraform CLI configuration file
-# with a GitHub AZURE_CREDENTIALS service principal secret for provisioning the Cloud Adoption Framework Azure Landing Zones. 
-# On pull request events, this workflow will run # `terraform init`, `terraform fmt`, and `terraform plan`. On push events
-# to the "main" branch, `terraform apply` will be executed.
-#
-# Documentation for `hashicorp/setup-terraform` is located here: https://github.com/hashicorp/setup-terraform
+# https://github.com/jakewalsh90/Terraform-Azure/blob/main/.github/workflows/apply.yml
+name: tf-validate-plan
 
-name: 'caf-alz-terraform'
+on: [workflow_dispatch]
 
-on:
-  worfklow_dispatch:
-    branches:
-    - "main"
-  pull_request:
-
-permissions:
-  contents: read
+defaults:
+  run:
+    working-directory: ./
 
 jobs:
-
-build-and-deploy:
-  runs-on: ubuntu-latest
-  steps:
-
-  - name: Log in with Azure
-      uses: azure/login@v1
-      with:
-      creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-  - name: Azure CLI script
-      uses: azure/CLI@v1
-      with:
-      azcliversion: 2.39.0
-      inlineScript: |
-          az account show
-          az storage -h  
-
   terraform:
-    name: 'caf-alz-terraform'
+    runs-on: ubuntu-latest
+
+    env:
+      ARM_CLIENT_ID: ${{secrets.AZURE_CREDENTIALS.CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZURE_CREDENTIALS.CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_CREDENTIALS.SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.AZURE_CREDENTIALS.ARM_TENANT_ID}}
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
-      run: terraform init
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
 
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+      - name: Terraform Init
+        run: terraform init
 
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -input=false
+      - name: Terraform Format
+        run: terraform fmt -recursive -diff
+        
+      - name: Terraform Validate
+        run: terraform validate
 
-      # On push to "main", build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    - name: Terraform Apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false
+      - name: Terraform Plan
+        run: terraform plan
+        
+      # - name: Terraform Apply
+      #   run: terraform apply --auto-approve

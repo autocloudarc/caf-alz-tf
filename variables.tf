@@ -65,7 +65,7 @@ variable "log_retention_in_days" {
 
 variable "security_alerts_email_address" {
   type    = string
-  default = "platform-infra@commure.com" 
+  default = "platform-infra@commure.com"
 }
 
 variable "deploy_connectivity_resources" {
@@ -74,13 +74,13 @@ variable "deploy_connectivity_resources" {
 }
 
 variable "connectivity_resources_location" {
-    type    = string
-    default = "eastus2"
+  type    = string
+  default = "eastus2"
 }
 
 variable "connectivity_resources_tags" {
-    type = map(string)
-    default = {
-        BelongsTo = "Platform-Infra"
-    }
+  type = map(string)
+  default = {
+    BelongsTo = "Platform-Infra"
+  }
 }

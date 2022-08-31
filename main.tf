@@ -4,11 +4,12 @@
 /*
 If using pipelines, use the following format for GitHub secrets to allow GitHub Actions to access the secrets:
 https://docs.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows
-a = {
-  "clientId": "<guid>",
-  "displayName": "<displayName>",
-  "clientSecret": "<clientSecret>",
-  "tenantId": "<guid>"
+{
+  "CLIENT_ID": "<>",
+  "CLIENT_SECRET": "<>",
+  "SUBSCRIPTION_ID": "<>"
+  "TENANT_ID": "<>",
+  "DISPLAY_NAME": "<>"
 }
 */
 
@@ -34,7 +35,7 @@ module "enterprise_scale" {
   root_id                   = var.root_id
   root_name                 = var.root_name
   deploy_core_landing_zones = true
-  library_path   = "${path.root}/lib"
+  library_path              = "${path.root}/lib"
 
 
   /*
