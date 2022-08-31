@@ -18,7 +18,14 @@ jobs:
       ARM_TENANT_ID: ${{secrets.AZURE_CREDENTIALS.ARM_TENANT_ID}}
 
     steps:
-      - uses: actions/checkout@v2
+
+      - name: login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZURE_CREDENTIALS}}
+
+      - name: checkout repo
+        uses: actions/checkout@v2
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
