@@ -1,0 +1,15 @@
+{
+    "extend_es_landing_zones": {
+      "policy_assignments": [],
+      "policy_definitions": [],
+      "policy_set_definitions": [
+        "a169a624-5599-4385-a696-c8d643089fab",
+        "e95f5a9f-57ad-4d03-bb0b-b1d16db93693"
+      ],
+      "role_definitions": [],
+      "archetype_config": {
+        "access_control": {
+        }
+      }
+    }
+  }
