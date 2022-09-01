@@ -41,7 +41,7 @@ module "enterprise_scale" {
   library_path              = "${path.root}/lib"
 
 
-  /*
+/*
   custom_landing_zones = {
     "${var.root_id}-online-example-1" = {
       display_name               = "${upper(var.root_id)} Online Example 1"
